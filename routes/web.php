@@ -14,5 +14,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/home', function () {
+    return view('homePage');
+});
+
+Route::get('/listPesanan', function () {
+    return view('listPesanan');
+});
+
+Route::get('/forgotPassword', function () {
+    return view('forgotPassword');
+});
+
+Route::get('/editProfilAgen', function () {
+    return view('editProfilAgen');
+});
+
+Route::get('/detailPesanan', function () {
+    return view('detailPesanan');
+});
+
+Route::get('/pengajuanRetur', function () {
+    return view('pengajuanRetur');
 });
