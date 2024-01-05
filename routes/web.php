@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/home', function () {
+// Route::get('/login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
+// Route::post('/login', [App\Http\Controllers\LoginController::class, 'postLogin']);
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::middleware(['auth'])->group(function () {
+   // Route::get('/homePage', 'HomeController@index')->name('home');
+   Route::get('/homePage', function () {
     return view('homePage');
+    });
+    Route::get('/listPesanan', [App\Http\Controllers\ListPesananController::class, 'listPesanan'])->name('listPesanan');
+    Route::get('detailPesanan/{idPesanan}', [App\Http\Controllers\ListPesananController::class, 'detailPesanan'])->name('detailPesanan');
 });
 
-Route::get('/listPesanan', function () {
-    return view('listPesanan');
-});
 
 Route::get('/forgotPassword', function () {
     return view('forgotPassword');
@@ -40,3 +43,6 @@ Route::get('/detailPesanan', function () {
 Route::get('/pengajuanRetur', function () {
     return view('pengajuanRetur');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -62,7 +62,7 @@
                 <div class="relative">
                     <img class="w-full -z-10" src="../../assets/profile.png" alt="">
                 </div>
-                <h1 class="w-full mt-3 text-sm font-bold">Adriansyah Ravindra</h1>
+                <h1 class="w-full mt-3 text-sm font-bold">{{ Auth::user()->owner_name }}</h1>
                 <p class="text-abutulisancoolfresh text-xs opacity-50 mt-1">Coolfresh Agent</p>
             </div>
             <div aria-label="list informasi email" class="flex justify-items-start flex-col w-1/2">
@@ -79,7 +79,7 @@
                         <h1 class="text-sm font-bold">Email</h1>
                     </div>
                     <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">
-                        adrimedia.indonesia@gmail.com</p>
+                    {{ Auth::user()->email }}</p>
                 </div>
                 <div aria-label="Informasi No Telp" class="mb-2 ">
                     <div class="flex gap-2 flex-row items-center ">
@@ -92,7 +92,7 @@
                         <h1 class="text-sm font-bold">No Telp</h1>
                     </div>
                     <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">
-                        +62-811-2349-927</p>
+                    {{ Auth::user()->phone_number }}</p>
                 </div>
                 <div aria-label="Informasi Perusahaan" class="mb-2 ">
                     <div class="flex gap-2 flex-row items-center ">
@@ -134,8 +134,7 @@
                         </svg>
                         <h1 class="text-sm font-bold">Perusahaan</h1>
                     </div>
-                    <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">Rumah
-                        makan sate kecoa</p>
+                    <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">{{ Auth::user()->name }}</p>
                 </div>
                 <div aria-label="Informasi Status Pesanan" class="mb-2 ">
                     <div class="flex gap-2 flex-row items-center ">
@@ -165,7 +164,7 @@
                     </svg>
                     <div class="flex flex-col text-white">
                         <h4 class="text-xs font-medium">Alamat Agen</h4>
-                        <p class="text-xxs font-light">Jl. Aeromodelling raya no.71, Bandung, West Java</p>
+                        <p class="text-xxs font-light">{{ Auth::user()->address }}</p>
                     </div>
                 </div>
             </div>
@@ -210,7 +209,7 @@
                     </svg>
                     <div class="flex flex-col text-white">
                         <h4 class="text-xs font-medium">Kode Pesanan</h4>
-                        <p class="text-xxs font-light">TRAN-000000000001</p>
+                        <p class="text-xxs font-light">{{ $detail->no_transaksi }}</p>
                     </div>
                 </div>
             </div>
@@ -225,7 +224,7 @@
                     </svg>
                     <div class="flex flex-col text-white">
                         <h4 class="text-xs font-medium">Tanggal Penerimaan Barang</h4>
-                        <p class="text-xxs font-light">09 Agustus 2024</p>
+                        <p class="text-xxs font-light">{{ $detail->tanggal_pemesanan }}</p>
                     </div>
                 </div>
             </div>
@@ -236,10 +235,10 @@
                 <div class="flex flex-row gap-3 items-center">
                     <img src="../../assets/contohescoolfresh.png" alt="" class="w-14">
                     <div class="flex flex-col gap-1">
-                        <h4 class="text-[0.625rem] text-coolfreshprimary font-normal">Total Pembelian : Rp. 100,000
+                        <h4 class="text-[0.625rem] text-coolfreshprimary font-normal">Total Pembelian : Rp. {{ $detail->harga }}
                         </h4>
-                        <h1 class="text-lg font-bold text-hitamcoolfresh">2x Es Batu Serut 20 KG</h1>
-                        <p class="text-xxs font-normal text-coolfreshprimary">Tanggal Pemesanan : 8 Juni 2024</p>
+                        <h1 class="text-lg font-bold text-hitamcoolfresh">{{ $detail->jumlah }}x {{ $detail->nama_produk }}</h1>
+                        <p class="text-xxs font-normal text-coolfreshprimary">Tanggal Pemesanan : {{ $detail->tanggal_pemesanan }}</p>
                     </div>
                 </div>
             </div>

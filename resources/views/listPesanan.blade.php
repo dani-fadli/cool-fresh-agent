@@ -45,58 +45,23 @@
     <div aria-label="pembungkus biru"
         class="w-full -z-10 bg-btncoolfresh rounded-t-lg absolute top-48 mt-10 pb-24 overflow-y-auto overflow-x-hidden h-screen before:content-icecoolfresh before:absolute before:right-0 before:bottom-0 before:scale-150 after:-z-20">
         <div class="w-11/12 mx-auto mt-8">
+        @foreach($listPesanan as $data)
             <div aria-label="card list pesanan" class="flex flex-col w-full h-1/6 bg-white rounded-lg px-8 py-4 mb-3">
                 <div class="flex flex-row gap-4 items-center">
                     <img src="../../assets/contohescoolfresh.png" class="w-14" alt="">
                     <div class="flex flex-col">
-                        <p class="text-xs font-semibold text-hitamcoolfresh">TRAN-000000001</p>
-                        <h3 class="text-lg font-bold text-btncoolfresh">Es Batu Serut 20KG</h3>
-                        <p class="text-[0.6rem]">Tanggal pemesanan : 8 Juni 2023</p>
+                        <p class="text-xs font-semibold text-hitamcoolfresh">{{ $data->no_transaksi}}</p>
+                        <h3 class="text-lg font-bold text-btncoolfresh">{{ $data->nama_produk}}</h3>
+                        <p class="text-[0.6rem]">Tanggal pemesanan : {{ $data->tanggal_pemesanan}}</p>
                     </div>
                 </div>
+                <a href="{{ url('detailPesanan',$data->id) }}">
                 <button type="button"
                     class="bg-langitbirucoolfresh mt-4 py-4 rounded-full text-white font-bold z-40">Lihat Detail
                     Pesanan</button>
+                    </a>
             </div>
-            <div aria-label="card list pesanan" class="flex flex-col w-full h-1/6 bg-white rounded-lg px-8 py-4 mb-3">
-                <div class="flex flex-row gap-4 items-center">
-                    <img src="../../assets/contohescoolfresh.png" class="w-14" alt="">
-                    <div class="flex flex-col">
-                        <p class="text-xs font-semibold text-hitamcoolfresh">TRAN-000000001</p>
-                        <h3 class="text-lg font-bold text-btncoolfresh">Es Batu Serut 20KG</h3>
-                        <p class="text-[0.6rem]">Tanggal pemesanan : 8 Juni 2023</p>
-                    </div>
-                </div>
-                <button type="button"
-                    class="bg-langitbirucoolfresh mt-4 py-4 rounded-full text-white font-bold z-40">Lihat Detail
-                    Pesanan</button>
-            </div>
-            <div aria-label="card list pesanan" class="flex flex-col w-full h-1/6 bg-white rounded-lg px-8 py-4 mb-3">
-                <div class="flex flex-row gap-4 items-center">
-                    <img src="../../assets/contohescoolfresh.png" class="w-14" alt="">
-                    <div class="flex flex-col">
-                        <p class="text-xs font-semibold text-hitamcoolfresh">TRAN-000000001</p>
-                        <h3 class="text-lg font-bold text-btncoolfresh">Es Batu Serut 20KG</h3>
-                        <p class="text-[0.6rem]">Tanggal pemesanan : 8 Juni 2023</p>
-                    </div>
-                </div>
-                <button type="button"
-                    class="bg-langitbirucoolfresh mt-4 py-4 rounded-full text-white font-bold z-40">Lihat Detail
-                    Pesanan</button>
-            </div>
-            <div aria-label="card list pesanan" class="flex flex-col w-full h-1/6 bg-white rounded-lg px-8 py-4 mb-3">
-                <div class="flex flex-row gap-4 items-center">
-                    <img src="../../assets/contohescoolfresh.png" class="w-14" alt="">
-                    <div class="flex flex-col">
-                        <p class="text-xs font-semibold text-hitamcoolfresh">TRAN-000000001</p>
-                        <h3 class="text-lg font-bold text-btncoolfresh">Es Batu Serut 20KG</h3>
-                        <p class="text-[0.6rem]">Tanggal pemesanan : 8 Juni 2023</p>
-                    </div>
-                </div>
-                <button type="button"
-                    class="bg-langitbirucoolfresh mt-4 py-4 rounded-full text-white font-bold z-40">Lihat Detail
-                    Pesanan</button>
-            </div>
+            @endforeach
         </div>
     </div>
     <div aria-label="menu sidebar" class="z-[70]">
