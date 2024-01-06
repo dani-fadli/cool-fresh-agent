@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         // Seed agents data
         Agent::factory(5)->create();
+        $this->call(ListPesananSeeder::class);
     }
 }

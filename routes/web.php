@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListPesananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+// Authentication
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout')->name('logout');
 });
 
-Route::get('/home', function () {
-    return view('homePage');
+Route::middleware(['auth'])->group(function () {
+    // Homepage
+    Route::get('/homePage', [HomeController::class, 'index'])->name('homepage');
+
+    // Orders
+    Route::controller(ListPesananController::class)->group(function () {
+        Route::get('/listPesanan', 'listPesanan')->name('listPesanan');
+        Route::get('/detailPesanan/{idPesanan}', 'detailPesanan')->name('detailPesanan');
+    });
 });
 
-Route::get('/listPesanan', function () {
-    return view('listPesanan');
-});
 
 Route::get('/forgotPassword', function () {
     return view('forgotPassword');
@@ -40,3 +50,6 @@ Route::get('/detailPesanan', function () {
 Route::get('/pengajuanRetur', function () {
     return view('pengajuanRetur');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

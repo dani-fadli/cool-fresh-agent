@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <h1 class="w-full mt-3 text-sm font-bold">Adriansyah Ravindra</h1>
+                <h1 class="w-full mt-3 text-sm font-bold">{{ Auth::user()->owner_name }}</h1>
                 <p class="text-abutulisancoolfresh text-xs opacity-50 mt-1">Coolfresh Agent</p>
             </div>
             <div aria-label="list informasi email" class="flex justify-items-start flex-col w-1/2">
@@ -55,7 +55,7 @@
                         <h1 class="text-sm font-bold">Email</h1>
                     </div>
                     <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">
-                        adrimedia.indonesia@gmail.com</p>
+                    {{ Auth::user()->email }}</p>
                 </div>
                 <div aria-label="Informasi No Telp" class="mb-2 ">
                     <div class="flex gap-2 flex-row items-center ">
@@ -68,7 +68,7 @@
                         <h1 class="text-sm font-bold">No Telp</h1>
                     </div>
                     <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">
-                        +62-811-2349-927</p>
+                    {{ Auth::user()->phone_number }}</p>
                 </div>
                 <div aria-label="Informasi Perusahaan" class="mb-2 ">
                     <div class="flex gap-2 flex-row items-center ">
@@ -110,8 +110,7 @@
                         </svg>
                         <h1 class="text-sm font-bold">Perusahaan</h1>
                     </div>
-                    <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">Rumah
-                        makan sate kecoa</p>
+                    <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">{{ Auth::user()->name }}</p>
                 </div>
                 <img src="../../assets/coolfreshambasadorr02.png" class="w-[36%] absolute -bottom-12 -z-10 right-[11%]"
                     alt="">
@@ -353,6 +352,7 @@
                         </svg>
                         <p class="text-xxs font-semibold mt-2">Profil Pribadi</p>
                     </div>
+                    <a href="{{ url('/listPesanan') }}">
                     <div aria-label="List Pesanan"
                         class="w-1/3 py-3 bg-white rounded-lg flex flex-col justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 33 34"
@@ -410,6 +410,7 @@
                                 fill="#041172" />
                         </svg>
                         <p class="text-xxs font-semibold mt-2">List Pesanan</p>
+                        </a>
                     </div>
                     <div aria-label="Pengajuan Retur"
                         class="w-1/3 py-3 bg-white rounded-lg flex flex-col justify-center items-center">
@@ -563,8 +564,12 @@
                     <button type="button"
                         class="w-full py-3 bg-btncoolfresh rounded-full text-langitbirucoolfresh font-semibold"
                         @click="show = !show">Cancel</button>
-                    <button type="button"
-                        class="w-full py-3 bg-white rounded-full text-red-600 font-semibold">Logout</button>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <button type="button" class="w-full py-3 bg-white rounded-full text-red-600 font-semibold">Logout</button>
+                       </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                 </div>
             </div>
         </div>
