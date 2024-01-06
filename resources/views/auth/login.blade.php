@@ -31,7 +31,7 @@
                 <div class="mt-6 flex flex-col">
                     <label for="kodeAgen" class="text-xs text-coolfreshprimary">Kode Agen</label>
                     <input id="kodeAgen" type="text" placeholder="Masukan Kode Agenmu"
-                        class="@error('email') is-invalid @enderror mt-2 rounded-md bg-inputcoolfresh border-none px-5 py-5 focus:outline-blue-400 placeholder:text-slate-300 placeholder:text-sm placeholder:font-light" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        class="@error('email') is-invalid @enderror mt-2 rounded-md bg-inputcoolfresh border-none px-5 py-5 focus:outline-blue-400 placeholder:text-slate-300 placeholder:text-sm placeholder:font-light" name="code" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

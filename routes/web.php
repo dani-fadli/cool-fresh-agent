@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListPesananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
-// Route::post('/login', [App\Http\Controllers\LoginController::class, 'postLogin']);
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
-Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+// Authentication
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout')->name('logout');
+});
+
 Route::middleware(['auth'])->group(function () {
-   // Route::get('/homePage', 'HomeController@index')->name('home');
-   Route::get('/homePage', function () {
-    return view('homePage');
+    // Homepage
+    Route::get('/homePage', [HomeController::class, 'index'])->name('homepage');
+
+    // Orders
+    Route::controller(ListPesananController::class)->group(function () {
+        Route::get('/listPesanan', 'listPesanan')->name('listPesanan');
+        Route::get('/detailPesanan/{idPesanan}', 'detailPesanan')->name('detailPesanan');
     });
-    Route::get('/listPesanan', [App\Http\Controllers\ListPesananController::class, 'listPesanan'])->name('listPesanan');
-    Route::get('detailPesanan/{idPesanan}', [App\Http\Controllers\ListPesananController::class, 'detailPesanan'])->name('detailPesanan');
 });
 
 
