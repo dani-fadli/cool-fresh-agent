@@ -16,8 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed agents data
+        // Agents
         Agent::factory(5)->create();
-        $this->call(ListPesananSeeder::class);
+
+        // Products
+        $this->call(ProductSeeder::class);
+
+        // Orders
+        $this->call(OrderStatusSeeder::class);
+        $this->call(OrderSeeder::class);
     }
 }
