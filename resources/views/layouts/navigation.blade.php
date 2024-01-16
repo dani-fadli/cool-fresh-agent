@@ -1,4 +1,4 @@
-<div aria-label="menu bawah" class="w-full fixed bottom-0 py-6 bg-white shadow-lg z-50">
+<div aria-label="menu bawah" class="w-full fixed bottom-0 py-6 bg-white shadow-lg">
     <div class="flex flex-row justify-evenly gap-10 items-center">
         <div aria-label="icon-home">
             <a href={{ url('homePage') }}>
