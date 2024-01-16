@@ -23,6 +23,7 @@ class Order extends Model
     ];
 
     // Relations
+
     /**
      * One order belongs to one agent
      *
@@ -63,11 +64,21 @@ class Order extends Model
     /**
      * One order has one order deliveries
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function delivery(): HasOne
     {
         return $this->hasOne(OrderDelivery::class);
+    }
+
+    /**
+     * One order has one order return
+     *
+     * @return HasOne
+     */
+    public function return(): HasOne
+    {
+        return $this->hasOne(OrderReturn::class);
     }
 
     /**

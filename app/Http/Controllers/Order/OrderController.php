@@ -26,7 +26,9 @@ class OrderController extends Controller
         $order = Order::query()
             ->with([
                 'agent',
-                'histories',
+                'histories' => function ($query) {
+                    return $query->orderByRaw("(SELECT sequence FROM order_statuses WHERE id = order_histories.status_id) DESC");
+                },
                 'status',
                 'products',
                 'delivery'
