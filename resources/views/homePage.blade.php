@@ -123,14 +123,18 @@
 <body class="scroll-smooth font-poppins bg-backgroundabu" x-data="{ show: false }">
     <div aria-label="container hp" class="mx-auto w-[90%]">
         <div aria-label="Informasi Pengguna"
-            class="mt-6 flex flex-row gap-6 items-start justify-center w-full relative -z-20">
+            class="mt-6 flex flex-row gap-6 items-start justify-center w-full relative">
             <div aria-label="Foto Profil" class="w-1/2">
                 <div class="relative">
-                    <img class="w-full -z-10" src={{ Auth::user()->avatar_url }} alt="">
-                    <div
-                        class="w-full bg-langitbirucoolfresh rounded-b-md z-30 absolute bottom-0 py-1.5 text-center hover:cursor-pointer hover:opacity-80">
+                @if(isset(Auth::user()->avatar_url))
+                    <img class="w-full -z-10" src="{{ asset('assets/ProfilAgent/' . Auth::user()->avatar_url) }}" alt="" style="height: 170px;">
+                @else
+                <img class="w-full -z-10" src="{{ asset('assets/ProfilAgent/dummy.png') }}" alt="Default Avatar" style="height: 170px;">
+                @endif
+                    <!-- <img class="w-full -z-10" src={{ asset('assets/ProfilAgent/' .Auth::user()->avatar_url) }} alt="" style="height: 170px;"> -->
+                    <div class="w-full bg-langitbirucoolfresh rounded-b-md z-30 absolute bottom-0 py-1.5 text-center hover:cursor-pointer hover:opacity-80">
                         <div class="flex flex-row items-center justify-center gap-2">
-                            <span class="text-xs text-white">Edit Profile</span>
+                            <a href="{{ url('edit-profil-agent', Auth::user()->id) }}" class="text-xs text-white">Edit Profile</a>
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
                                 fill="none">
                                 <path
@@ -667,11 +671,11 @@
 
             // Kalau popup berhasil munculnya ini
 
-            Swal.fire({
-                title: 'Login Berhasil',
-                text: 'Silahkan untuk menjelajahi aplikasi sesuka hatimu yaa',
-                confirmButtonText: 'Lanjutkan'
-            });
+            //Swal.fire({
+              //  title: 'Login Berhasil',
+                ///text: 'Silahkan untuk menjelajahi aplikasi sesuka hatimu yaa',
+                //confirmButtonText: 'Lanjutkan'
+            //});
 
             // Custom style sweetalert 2 by adri
 

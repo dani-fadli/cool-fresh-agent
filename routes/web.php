@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListPesananController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Order\OrderReturnController;
+use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,11 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ListPesananController::class)->group(function () {
         Route::get('/listPesanan', 'listPesanan')->name('listPesanan');
         Route::get('/detailPesanan/{idPesanan}', 'detailPesanan')->name('detailPesanan');
+    });
+
+    Route::controller(AgentController::class)->group(function () {
+        Route::get('/edit-profil-agent/{id}', 'editProfilAgen');
+        Route::put('/update-agent/{id}', 'updateAgent');
     });
 });
 

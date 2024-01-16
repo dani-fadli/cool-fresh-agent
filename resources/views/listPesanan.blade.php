@@ -58,8 +58,7 @@
                 <a href="{{ url('detail-order', $data->id) }}">
                     <button type="button"
                             class="bg-langitbirucoolfresh mt-4 ml-1 mr-1 py-4 rounded-full text-white font-bold z-40">
-                        Lihat Detail
-                        Pesanan
+                            Lihat Detail Pesanan
                     </button>
                 </a>
             </div>

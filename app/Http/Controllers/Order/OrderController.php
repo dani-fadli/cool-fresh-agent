@@ -17,6 +17,7 @@ class OrderController extends Controller
                 'status',
                 'products'
             ])
+            ->orderBy('id')
             ->get();
         return view('listPesanan', compact('orders'));
     }

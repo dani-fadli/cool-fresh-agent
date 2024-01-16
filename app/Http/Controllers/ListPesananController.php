@@ -12,7 +12,7 @@ class ListPesananController extends Controller
      */
     public function listPesanan()
     {
-        $listPesanan = ListPesanan::all();
+        $listPesanan = ListPesanan::all()->orderBy('created_at', 'desc')->get();
         return view('listPesanan',compact('listPesanan'));
     }
 
