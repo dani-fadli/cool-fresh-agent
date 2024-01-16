@@ -54,7 +54,7 @@
                     <div class="mt-6 flex flex-col relative" x-data="{ isVisible: false }">
                         <label for="password" class="text-xs text-coolfreshprimary">Password</label>
                         <div aria-label="Input Password With Eye Icon" class="flex w-full">
-                            <input id="password" type="text" placeholder="Masukan Passwordmu"
+                            <input id="password" type="password" placeholder="Masukan Passwordmu"
                                 class="@error('password') is-invalid @enderror mt-2 rounded-md bg-inputcoolfresh border-none px-5 py-5 w-full focus:outline-blue-400 placeholder:text-slate-300 placeholder:text-sm placeholder:font-light"
                                 @visibility.window="$el.type = ($el.type == 'password') ? 'text' : 'password'" name="password" required autocomplete="current-password" x-model="password" @input="checkPasswordStrength">
                                 @error('password')
@@ -101,7 +101,7 @@
                         </div>
                         <a href="#" class="text-sm text-textcoolfresh2 font-semibold underline">Lupa Password?</a>
                     </div>
-                    <div class="w-full  h-7 flex justify-center items-center">
+                    <div class="w-full h-7 flex justify-center items-center">
                         <div class="rounded-md h-[3px] bg-slate-950 w-2/6 "></div>
                     </div>
                 </div>
