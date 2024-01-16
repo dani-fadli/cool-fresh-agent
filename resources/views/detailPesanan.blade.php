@@ -18,44 +18,53 @@
 
 <body class="scroll-smooth font-poppins bg-backgroundabu" x-data="{ show: false }">
 <div aria-label="container hp" class="mx-auto w-[90%] mb-24">
+    @if(session('success'))
+        <div class="flex items-center bg-green-500 text-white text-sm font-bold px-4 py-3" role="alert">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                    d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/>
+            </svg>
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
     <div class="w-full flex flex-row items-center mt-8">
         <a href="{{ url()->previous() }}">
-        <div class="flex flex-col justify-center items-center gap-0.5">
-            <img src="../../assets/ButtonBack.png" alt="" class="w-6">
-            <p class="text-xxs font-semibold">Back</p>
-        </div>
+            <div class="flex flex-col justify-center items-center gap-0.5">
+                <img src="../../assets/ButtonBack.png" alt="" class="w-6">
+                <p class="text-xxs font-semibold">Back</p>
+            </div>
         </a>
         <h1 class="text-center mx-auto text-lg font-bold">Detail Pesanan</h1>
     </div>
     <div aria-label="Card">
         <div aria-label="card"
-             class="w-auto h-full bg-white rounded-xl px-8 pt-8 mt-8 overflow-x-auto overflow-y-hidden pb-8 shadow-md">
-            <h3 class="font-medium text-sm">History Timeline Pengiriman</h3>
-            <div aria-label="Timeline Pengiriman" class="relative mt-8 w-auto h-full">
-                <div aria-label="garis timeline" class="w-screen h-full border-4 border-backgroundborder">
-                    <div aria-label="bulat" class="rounded-full w-6 bg-backgroundborder h-6 absolute -top-2 ml-2">
-                    </div>
-                    <div aria-label="bulat biru active"
-                         class="rounded-full w-8 bg-backgroundborder h-8 absolute -top-3 ml-20">
-                        <div class="rounded-full bg-langitbirucoolfresh w-3/4 h-3/4 mx-auto mt-1"></div>
-                    </div>
-                    <div aria-label="bulat" class="rounded-full w-6 bg-backgroundborder h-6 absolute -top-2 ml-40">
-                    </div>
-                    <div aria-label="bulat" class="rounded-full w-6 bg-backgroundborder h-6 absolute -top-2 ml-60">
-                    </div>
-                </div>
-                <div aria-label="active label" class="mt-6 ml-20 w-3/5">
-                    <h3 class="mt-4 font-bold text-xs mb-2 text-btncoolfresh">{{ $order->status->name }}</h3>
-                    <p class="font-light text-xxs break-words">{{ $order->histories->first()?->description  }}</p>
-                </div>
-                <div class="mt-6 w-full flex flex-row justify-between items-center gap-4">
-                    <div class="relative w-full">
-                        <div class="absolute z-20 h-2 w-full bg-langitbirucoolfresh"></div>
-                        <div class="absolute z-10 h-2 w-full bg-gray-400"></div>
-                    </div>
-                    <p class="text-btncoolfresh text-xxs w-1/2 mt-1.5 font-semibold">Still on progress</p>
-                </div>
-            </div>
+             class="w-auto h-full bg-white rounded-xl px-8 pt-8 mt-4 overflow-x-auto overflow-y-hidden pb-8 shadow-md">
+            <h3 class="font-medium text-lg mb-2">History Timeline Pengiriman</h3>
+            <ol class="relative border-s border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                @foreach($order->histories as $i => $history)
+                    <li class="mb-4 ms-6">
+                        @if($i === 0)
+                            <span
+                                class="absolute flex items-center justify-center w-4 h-4 bg-green-200 rounded-full -start-2 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
+            <svg class="w-2 h-2 text-green-500 dark:text-green-400" aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M1 5.917 5.724 10.5 15 1.5"/>
+            </svg>
+        </span>
+                            <h3 class="font-medium text-gray-500 leading-tight">{{ $history->status->name }}</h3>
+                            <p class="text-sm text-gray-500">{{ $history->description }}</p>
+                        @else
+                            <span
+                                class="absolute flex items-center justify-center w-4 h-4 bg-gray-100 rounded-full -start-2 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700">
+
+        </span>
+                            <h3 class="font-medium leading-tight">{{ $history->status->name }}</h3>
+                            <p class="text-sm">{{ $history->description }}</p>
+                        @endif
+                    </li>
+                @endforeach
+            </ol>
         </div>
     </div>
     <div aria-label="Informasi Pengguna"

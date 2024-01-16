@@ -77,10 +77,10 @@
             background-color: #27AAE1;
             color: #fff;
             font-size: 0.75rem;
-            padding-top:1rem; 
+            padding-top:1rem;
             padding-bottom:1rem;
-            padding-left: 2rem;  
-            padding-right: 2rem;  
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
         div:where(.swal2-container) div:where(.swal2-actions) {
             display: flex;
@@ -126,7 +126,7 @@
             class="mt-6 flex flex-row gap-6 items-start justify-center w-full relative -z-20">
             <div aria-label="Foto Profil" class="w-1/2">
                 <div class="relative">
-                    <img class="w-full -z-10" src="../../assets/profile.png" alt="">
+                    <img class="w-full -z-10" src={{ Auth::user()->avatar_url }} alt="">
                     <div
                         class="w-full bg-langitbirucoolfresh rounded-b-md z-30 absolute bottom-0 py-1.5 text-center hover:cursor-pointer hover:opacity-80">
                         <div class="flex flex-row items-center justify-center gap-2">
@@ -215,11 +215,10 @@
                         </svg>
                         <h1 class="text-sm font-bold">Perusahaan</h1>
                     </div>
-                    <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">
-                        {{ Auth::user()->name }}</p>
+                    <p class="w-full text-[9px] mt-2 font-medium text-abutulisancoolfresh opacity-50 break-all">{{ Auth::user()->name }}</p>
                 </div>
-                <img src="../../assets/coolfreshambasadorr02.png"
-                    class="w-[36%] absolute -bottom-12 -z-10 right-[11%]" alt="">
+                <img src="../../assets/coolfreshambasadorr02.png" class="w-[36%] absolute -bottom-12 -z-10 right-[11%]"
+                     alt="">
             </div>
         </div>
         <div aria-label="statistic data" class="z-10">
@@ -458,9 +457,9 @@
                         </svg>
                         <p class="text-xxs font-semibold mt-2">Profil Pribadi</p>
                     </div>
-                    <a href="{{ url('/list-orders') }}">
                         <div aria-label="List Pesanan"
                             class="w-1/3 py-3 bg-white rounded-lg flex flex-col justify-center items-center">
+                            <a class="flex flex-col items-center" href={{ url('list-orders') }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="mx-auto"
                                 viewBox="0 0 33 34" fill="none">
                                 <path d="M31.6052 10.0654H1.39478V32.2639H31.6052V10.0654Z" fill="white" />
@@ -522,6 +521,7 @@
                 </div>
                 <div aria-label="Pengajuan Retur"
                     class="w-1/3 py-3 bg-white rounded-lg flex flex-col justify-center items-center">
+                    <a class="flex flex-col items-center" href={{ url('form-return') }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" viewBox="0 0 40 31"
                         fill="none">
                         <path d="M15.1556 8.6897H11.5975V18.413H15.1556V8.6897Z" fill="white" />
@@ -601,6 +601,7 @@
                             fill="#041172" />
                     </svg>
                     <p class="text-xxs font-semibold mt-2">Pengajuan Retur</p>
+                    </a>
                 </div>
             </div>
             <button aria-label="button logout"
@@ -715,9 +716,9 @@
             // cariTahuParentnya.replaceChild(buatWrapperDiv, tangkapIconSwal);
             // buatWrapperDiv.appendChild(ambilIconSukes);
             // ambilIconSukes.classList.remove('hidden');
-        
+
     </script>
-        
+
 
 </body>
 
