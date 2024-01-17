@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="dist/output.css" rel="stylesheet">
     <title>CoolfreshAgent | Detail Pesanan Page </title>
+    <link rel="icon" href="{{ asset('assets/snowflake.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -53,7 +54,12 @@
             </svg>
         </span>
                             <h3 class="font-medium text-gray-500 leading-tight">{{ $history->status->name }}</h3>
-                            <p class="text-sm text-gray-500">{{ $history->description }}</p>
+                            @if($history->status->slug === 'retur-diajukan')
+                                <p class="text-sm text-gray-500">{{ $history->description }} dengan alasan <span
+                                        class="font-bold">"{{ $order->return->description }}"</span></p>
+                            @else
+                                <p class="text-sm text-gray-500">{{ $history->description }}</p>
+                            @endif
                         @else
                             <span
                                 class="absolute flex items-center justify-center w-4 h-4 bg-gray-100 rounded-full -start-2 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700">
@@ -248,7 +254,7 @@
                     <img src="{{ $product->pivot->image_url }}" alt="" class="w-14">
                     <div class="flex flex-col gap-1">
                         <h4 class="text-[0.625rem] text-coolfreshprimary font-normal">Total Pembelian :
-                            Rp. {{ $product->pivot->total_price }}
+                            Rp{{ number_format($product->pivot->total_price, 0, ',', '.') }}
                         </h4>
                         <h1 class="text-lg font-bold text-hitamcoolfresh">{{ $product->pivot->quantity }}
                             x Rp{{ number_format($product->pivot->price, 0, ',', '.') }}</h1>

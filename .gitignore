@@ -19,8 +19,8 @@ yarn-error.log
 /.vscode
 
 # Ignore all files in public/assets/
-public/assets/*
+public/assets/ProfilAgent/*
 
 # Include specific files in public/assets/
-!public/assets/dummy.png
-!public/assets/profile.png
+!public/assets/ProfilAgent/dummy.png
+!public/assets/ProfilAgent/profile.png
