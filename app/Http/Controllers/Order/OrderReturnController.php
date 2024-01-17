@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class OrderReturnController extends Controller
 {
@@ -17,7 +18,13 @@ class OrderReturnController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'code' => ['required', 'string', 'exists:orders,code'],
+            'code' => [
+                'required',
+                'string',
+                Rule::exists(Order::class, 'code')->where(function ($query) {
+                    return $query->where('agent_id', auth()->id());
+                })
+            ],
             'description' => ['required', 'string'],
             'image' => ['required', 'image', 'max:2048']
         ]);

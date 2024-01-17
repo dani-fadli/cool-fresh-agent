@@ -34,7 +34,6 @@ class AgentFactory extends Factory
             'route' => implode('', ['RUTE-A', fake()->numberBetween(1, 3)]),
             'address' => fake()->address(),
             'description' => fake()->realText(),
-            'avatar_url' => fake()->imageUrl(400, 400, '400x400', false),
             'remember_token' => Str::random(10)
         ];
     }
