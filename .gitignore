@@ -17,3 +17,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Ignore all files in public/assets/
+public/assets/*
+
+# Include specific files in public/assets/
+!public/assets/dummy.png
+!public/assets/profile.png

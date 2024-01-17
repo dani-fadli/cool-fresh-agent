@@ -17,7 +17,6 @@ class OrderSeeder extends Seeder
     public function run(): void
     {
         $agent = Agent::query()->where('code', 'BDO-0001')->firstOrFail();
-        $product = Product::query()->first();
 
         $orders = [
             [
@@ -27,7 +26,7 @@ class OrderSeeder extends Seeder
                 'histories' => [
                     [
                         'status_id' => 1,
-                        'description' => 'Pesanan telah dibuat dan menunggu diproses'
+                        'description' => 'Pesanan telah dibuat dan sedang menunggu konfirmasi dari admin'
                     ]
                 ]
             ],
@@ -74,7 +73,7 @@ class OrderSeeder extends Seeder
                         'description' => 'Pesanan sedang dikirim oleh Sudarsono'
                     ],
                     [
-                        'status_id' => 7,
+                        'status_id' => 8,
                         'description' => 'Pesanan telah diterima oleh agen'
                     ]
                 ],
@@ -106,11 +105,12 @@ class OrderSeeder extends Seeder
             }
 
             // Create order products
+            $product = Product::query()->inRandomOrder()->first();
             $order->products()->attach($product, [
                 'name' => $product->name,
                 'quantity' => ++$i,
                 'price' => $product->price,
-                'total_price' => $product->price * ++$i,
+                'total_price' => $product->price * $i,
                 'image_url' => $product->image_url
             ]);
         }

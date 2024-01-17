@@ -35,6 +35,11 @@ class OrderReturnController extends Controller
             'image_url' => $request->file('image')->store('returns')
         ]);
 
+        $order->histories()->create([
+            'status_id' => OrderStatus::query()->where('slug', 'retur-diajukan')->value('id'),
+            'description' => 'Pengajuan retur telah dikirimkan'
+        ]);
+
         return redirect()
             ->action([OrderController::class, 'show'], [$order])
             ->with('success', 'Pengajuan retur berhasil dikirimkan');

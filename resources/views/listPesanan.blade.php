@@ -27,7 +27,9 @@
                 <circle cx="17.1412" cy="17.1429" r="2.85714" fill="#024D76"/>
             </svg>
             <div>
-                <img src={{ Auth::user()->avatar_url }} alt="" class="w-8 rounded-full">
+                <img src={{ asset('assets/ProfilAgent/' . (Auth::user()->avatar_url ?? 'dummy.png')) }} alt=""
+                     class="w-14 rounded-full"
+                     alt="">
             </div>
         </div>
         <div aria-label="Title Page List Pesanan" class="w-full mt-4">
@@ -50,15 +52,54 @@
                 <div class="flex flex-row gap-4 items-center">
                     <img src="{{ $data->products->first()->image_url }}" class="w-14" alt="">
                     <div class="flex flex-col">
-                        <p class="text-xs font-semibold text-hitamcoolfresh">{{ $data->code}}</p>
+                        <p class="text-xs font-semibold text-hitamcoolfresh">{{ $data->code}}
+                            @switch($data->status->slug)
+                                @case('pesanan-dibuat')
+                                    <span
+                                        class="bg-blue-100 text-blue-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-50 dark:text-blue-500 border border-blue-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('pesanan-diproses')
+                                    <span
+                                        class="bg-green-100 text-green-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-50 dark:text-green-500 border border-green-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('pesanan-dikirim')
+                                    <span
+                                        class="bg-purple-100 text-purple-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-purple-50 dark:text-purple-500 border border-purple-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('retur-diajukan')
+                                    <span
+                                        class="bg-yellow-100 text-yellow-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-50 dark:text-yellow-500 border border-yellow-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('pengajuan-retur-ditolak')
+                                    <span
+                                        class="bg-red-100 text-red-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-50 dark:text-red-500 border border-red-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('retur-diproses')
+                                    <span
+                                        class="bg-orange-100 text-orange-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-orange-50 dark:text-orange-500 border border-orange-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('retur-dikirim')
+                                    <span
+                                        class="bg-pink-100 text-pink-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-pink-50 dark:text-pink-500 border border-pink-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('pesanan-selesai')
+                                    <span
+                                        class="bg-teal-100 text-teal-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-teal-50 dark:text-teal-500 border border-teal-400">{{ $data->status->name }}</span>
+                                    @break
+                                @case('pesanan-dibatalkan')
+                                    <span
+                                        class="bg-gray-100 text-gray-400 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-50 dark:text-gray-500 border border-gray-400">{{ $data->status->name }}</span>
+                                    @break
+                            @endswitch
+                        </p>
                         <h3 class="text-lg font-bold text-btncoolfresh">{{ $data->products->first()->name}}</h3>
                         <p class="text-[0.6rem]">Tanggal pemesanan: {{ $data->created_at }}</p>
                     </div>
                 </div>
                 <a href="{{ url('detail-order', $data->id) }}">
                     <button type="button"
-                            class="bg-langitbirucoolfresh mt-4 ml-1 mr-1 py-4 rounded-full text-white font-bold z-40">
-                            Lihat Detail Pesanan
+                            class="bg-langitbirucoolfresh mt-4 ml-1 mr-1 py-4 px-4 rounded-full text-white font-bold z-40">
+                        Lihat Detail Pesanan
                     </button>
                 </a>
             </div>
