@@ -6,7 +6,9 @@
         <div aria aria-label="Pembungkus menu" class="w-11/12 mx-auto">
             <div class="flex flex-row justify-between items-start mt-6 px-3">
                 <div aria-label="profile and name" class="flex flex-row gap-4">
-                    <img src={{ Auth::user()->avatar_url }} alt="" class="w-12 rounded-full">
+                    <img class="w-12 h-12 rounded-full"
+                         src="{{ asset('assets/ProfilAgent/' . (Auth::user()->avatar_url ?? 'dummy.png')) }}"
+                         alt="">
                     <div class="flex flex-col">
                         <h1 class="text-coolfreshprimary font-semibold text-base">{{ Auth::user()->owner_name }}</h1>
                         <h3 class="text-xs opacity-70 text-coolfreshprimary">Coolfresh Agent</h3>
@@ -34,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href={{ url('homePage') }}>
+                    <a href={{ url('edit-profil-agent', ['id' => Auth::user()->id]) }}>
                         <div class="flex flex-row gap-4 items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
                                  viewBox="0 0 17 17" fill="none">

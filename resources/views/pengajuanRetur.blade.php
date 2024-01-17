@@ -31,7 +31,8 @@
                     <circle cx="17.1412" cy="17.1429" r="2.85714" fill="#024D76"/>
                 </svg>
                 <div>
-                    <img src={{ Auth::user()->avatar_url }} alt="" class="w-8 rounded-full">
+                    <img src="{{ asset('assets/ProfilAgent/' . (Auth::user()->avatar_url ?? 'dummy.png')) }}" alt=""
+                         class="w-14 rounded-full">
                 </div>
             </div>
             <div aria-label="Title Page List Pesanan" class="w-full mt-4">

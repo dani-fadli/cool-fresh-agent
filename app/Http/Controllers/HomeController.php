@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderReturn;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('homePage');
+        $data = [
+            'total_agent' => 0,
+            'total_order' => Auth::user()->orders()->count(),
+            'total_return' => OrderReturn::query()->whereHas('order', function ($query) {
+                $query->where('agent_id', Auth::user()->id);
+            })->count()
+        ];
+        return view('homePage', compact('data'));
     }
 }

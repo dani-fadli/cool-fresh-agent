@@ -71,7 +71,8 @@
          class="mt-6 flex flex-row gap-6 items-start justify-center w-full relative -z-20 px-1">
         <div aria-label="Foto Profil" class="w-1/2">
             <div class="relative">
-                <img class="w-full -z-10" src="{{ $order->agent->avatar_url  }}" alt="">
+                <img class="w-full -z-10"
+                     src="{{ asset('assets/ProfilAgent/' . (Auth::user()->avatar_url ?? 'dummy.png')) }}" alt="">
             </div>
             <h1 class="w-full mt-3 text-sm font-bold">{{ $order->agent->owner_name }}</h1>
             <p class="text-abutulisancoolfresh text-xs opacity-50 mt-1">Coolfresh Agent</p>
